@@ -1,0 +1,1 @@
+export 'package:smart_auction/infrastructure/navigation/bindings/controllers/login.controller.binding.dart'; 

@@ -1,0 +1,97 @@
+name: smart_auction
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 2.0.5+2263
+
+environment:
+  sdk: ">=2.17.0 <3.0.5"
+
+dependencies:
+  animations: ^2.0.3
+  another_flushbar: ^1.10.29
+  auth_buttons: ^2.0.4
+  awesome_icons: ^1.1.0
+  cached_network_image: ^3.2.1
+  carousel_slider: ^4.1.1
+  cloud_firestore: ^3.1.18
+  color: ^3.0.0
+  community_material_icon: ^5.9.55
+  country_picker: ^2.0.15
+  crypto: ^3.0.2
+  cupertino_icons: ^1.0.5
+  dartz: ^0.10.1
+  data_table_2: ^2.3.5
+  datetime_picker_formfield: ^2.0.0
+  dots_indicator: ^2.1.0
+  easy_localization: ^3.0.1
+  environment_config: ^3.1.0
+  firebase_auth: ^3.4.2
+  firebase_core: ^1.19.2
+  firebase_messaging: ^10.0.9
+  firebase_phone_auth_handler: ^1.0.4
+  flag: ^5.0.2
+  flutter:
+    sdk: flutter
+  flutter_config: ^2.0.0
+  flutter_countdown_timer: ^4.1.0
+  flutter_credit_card: ^3.0.1
+  flutter_datetime_picker: ^1.5.1
+  flutter_facebook_auth: ^4.3.4+2
+  flutter_inappwebview: ^5.4.3+7
+  flutter_launcher_icons: ^0.9.2
+  flutter_local_notifications: ^9.7.0
+  flutter_svg: ^1.1.1
+  fluttertoast: ^8.0.9
+  font_awesome_flutter: ^9.2.0
+  get: ^4.6.1
+  get_storage: ^2.0.3
+  getwidget: ^2.0.5
+  google_fonts: ^2.3.3
+  google_sign_in: ^5.2.1
+  http: ^0.13.4
+  image_picker: ^0.8.4+11
+  latlng: ^0.2.0
+  # mdi: ^4.0.0
+  package_info_plus: ^1.4.3
+  persistent_bottom_nav_bar: ^4.0.2
+  prompt_dialog: ^1.0.9
+  responsive_sizer: ^3.0.5+1
+  rive: ^0.8.4
+  rive_splash_screen: ^0.1.0
+  shared_preferences: ^2.0.11
+  sign_in_with_apple: ^4.1.0
+  simple_animated_icon: ^1.1.0
+  slide_countdown: ^0.2.8
+  timeago: ^3.2.2
+  wp_notify: ^1.0.0
+
+dev_dependencies:
+  flutter_lints: ^1.0.4
+  flutter_test:
+    sdk: flutter
+  icons_launcher: ^1.1.6
+
+flutter_icons:
+  image_path: "assets/images/t3_app_icon.png"
+  android: true
+  ios: true
+  ipad: true
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - resources/langs/
+    - assets/
+    - assets/images/
+    - assets/riveAmin/
+    - assets/intro/
+    - google_fonts/
+    - config/
+
+  fonts:
+    - family: MyFlutterApp
+      fonts:
+        - asset: assets/fonts/MyFlutterApp.ttf

@@ -1,0 +1,34 @@
+[
+    {
+        "type": "Directory",
+        "name": "/Users/aldoyh/Projects/tayet-app/tayet/assets",
+        "parent_id": null,
+        "workspaceRoot": "/Users/aldoyh/Projects/tayet-app/tayet",
+        "workspacePath": "assets",
+        "id": "0E4lCDpajM8Bov1Z"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/aldoyh/Projects/tayet-app/tayet-work1/lib/repository.dart",
+        "parent_id": null,
+        "workspaceRoot": "/Users/aldoyh/Projects/tayet-app/tayet-work1",
+        "workspacePath": "lib/repository.dart",
+        "id": "VTmW2QurZSUh57ex"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/aldoyh/Projects/uiflutter/lib",
+        "parent_id": null,
+        "workspaceRoot": "/Users/aldoyh/Projects/uiflutter",
+        "workspacePath": "lib",
+        "id": "gNqw2DGC038f6mVd"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/aldoyh/Projects/tayet-main/ProjectDocs",
+        "parent_id": null,
+        "workspaceRoot": "/Users/aldoyh/Projects/tayet-main",
+        "workspacePath": "ProjectDocs",
+        "id": "MNetpW14GnbRQ762"
+    }
+]

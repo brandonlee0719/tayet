@@ -1,0 +1,36 @@
+import '../../base/app_lib.dart';
+class LightTheme {
+  static Color l1 = Colors.black;
+  static Color l2 = Colors.white;
+  static Color l3 = ColorKey.c58;
+  static Color l4 = Colors.grey;
+  static Color l5 = ColorKey.bgColor;
+  static Color l6 = ColorKey.registerBox;
+  static Color l7 = ColorKey.colorDarkGrey;
+  static Color l8 = Colors.transparent;
+  static Color l9 = ColorKey.textSecondary;
+  static Color l10 = ColorKey.primaryColor;
+  static Color l11 = Color(0x1F000000);
+  static Color l12 = ColorKey.darkGrey;
+  static Color l13 = ColorKey.greyBgColor;
+  static Color l14 = ColorKey.cartColor;
+  static Color l15 = ColorKey.c20;
+  static Color l16 = Colors.grey[400]!;
+  static Brightness l17 =  Brightness.light;
+  static Color l18 =  ColorKey.secondPurpleColor;
+  static bool l19 =  false;
+  static Color l20 =  ColorKey.fourthGreyColor;
+  static Color l21 =  ColorKey.timeColor;
+  static bool l22 =  true;
+  static double l23 =  0;
+  static BorderStyle l24 =  BorderStyle.none;
+  static Color l25 =  ColorKey.c36;
+  static String l26 = Constants.lightMode;
+  static Color l27 =  ColorKey.listColor;
+  static Color l28 =  ColorKey.listTileColor;
+  static Color l29 =  ColorKey.personColor;
+  static Color l30 =  ColorKey.innerSearchColor;
+  static Color l31 =  ColorKey.lightGreyColor;
+  static Color l32 =  ColorKey.lightGreenColor;
+  static Color l33 =  ColorKey.c56;
+}

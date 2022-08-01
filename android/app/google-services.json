@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "655296818080",
+    "project_id": "tayet-3aleeh",
+    "storage_bucket": "tayet-3aleeh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655296818080:android:14c420554b078d622a92c5",
+        "android_client_info": {
+          "package_name": "com.tayet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655296818080-4a0abvbnsil894i06bblunpgov0r8b32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMJkRHmsXWCh5DqmbKTgM4qfZqNMxBT5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655296818080-4a0abvbnsil894i06bblunpgov0r8b32.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "655296818080-bn8fivsdglhjeccjaqp5ubgljq0dh0g5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tayet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

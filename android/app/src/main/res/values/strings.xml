@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">684570372885395</string>
+    <string name="facebook_client_token">55b83a19a365f2df4fe62a9e25262914</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>
