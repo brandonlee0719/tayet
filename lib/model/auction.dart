@@ -49,9 +49,9 @@ class Auction {
         json['closing_date'],
       ),
       isSold: json['isSold'],
-      imageList: json['imageList'] == null && json['imageList'] is List
-          ? json['imageList']
-          : List.from(json['imageList']).map((e) => e as String).toList(),
+      imageList: json['imageList'] == null
+          ? []
+          : List<String>.from(json['imageList']).map((e) => e).toList(),
       totalBidders:
           json['bidder'] == null ? 0 : List.from(json['bidder']).length,
       categoryList: (json['categories'] != null) && json['categories'] is List

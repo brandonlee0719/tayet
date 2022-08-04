@@ -33,7 +33,7 @@ class _SplashScreenState extends State<MySplashScreen> {
       print("user status: ${_userController.status.value}");
       // print("user id is ${FirebaseAuth.instance.currentUser!.email}");
     }
-    // TODO: Splash screen timer on starting up
+    // TODO: #11 Splash screen timer on starting up
     _timer = Timer(const Duration(milliseconds: 7000), () {
       if (_userController.status == Status.Unauthenticated) {
         // Get.offNamed(LoginScreen.routeName);

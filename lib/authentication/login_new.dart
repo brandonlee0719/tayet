@@ -4,7 +4,6 @@ import 'dart:ui';
 
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,13 +11,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smart_auction/repository.dart/user_repository.dart';
 
 import '../base/app_lib.dart';
-import '../user_screen.dart/bottom_nav.dart';
 import '../user_screen.dart/send_otp.dart';
 import '../utils/colors.dart';
 import 'signup.dart';
 
 class HomeLoginScreen extends StatefulWidget {
-  HomeLoginScreen({Key? key}) : super(key: key);
+  const HomeLoginScreen({Key? key}) : super(key: key);
 
   @override
   _HomeLoginScreenState createState() => _HomeLoginScreenState();
@@ -32,6 +30,10 @@ class _HomeLoginScreenState extends State<HomeLoginScreen>
   late Animation<double> animation2;
   late Animation<double> animation3;
   late Animation<double> animation4;
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _userController = Get.find<UserRepository>();
 
   @override
   void initState() {
@@ -114,9 +116,6 @@ class _HomeLoginScreenState extends State<HomeLoginScreen>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
-    final _userController = Get.find<UserRepository>();
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 53, 71, 92),
         body: ScrollConfiguration(
@@ -190,6 +189,7 @@ class _HomeLoginScreenState extends State<HomeLoginScreen>
                       children: <Widget>[
                         TextField(
                           // TODO: Needs a text controller
+                          controller: _emailController,
                           decoration: InputDecoration(
                               icon: const Icon(
                                 Icons.email,
@@ -203,6 +203,7 @@ class _HomeLoginScreenState extends State<HomeLoginScreen>
                               labelStyle: const TextStyle(color: Colors.grey)),
                         ),
                         TextField(
+                          controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               icon: const Icon(
@@ -345,122 +346,123 @@ class _HomeLoginScreenState extends State<HomeLoginScreen>
         ));
   }
 
-  Widget component1(
-      IconData icon, String hintText, bool isPassword, bool isEmail) {
-    Size size = MediaQuery.of(context).size;
-    final _emailController = TextEditingController();
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(15),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaY: 15,
-          sigmaX: 15,
-        ),
-        child: Container(
-          height: size.width / 8,
-          width: size.width / 1.2,
-          alignment: Alignment.center,
-          padding: EdgeInsets.only(right: size.width / 30),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.05),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: TextField(
-            controller: _emailController,
-            style: TextStyle(color: Colors.white.withOpacity(.8)),
-            cursorColor: Colors.white,
-            obscureText: isPassword,
-            keyboardType:
-                isEmail ? TextInputType.emailAddress : TextInputType.text,
-            decoration: InputDecoration(
-              prefixIcon: Icon(
-                icon,
-                color: Colors.white.withOpacity(.7),
-              ),
-              border: InputBorder.none,
-              hintMaxLines: 1,
-              hintText: hintText,
-              hintStyle:
-                  TextStyle(fontSize: 14, color: Colors.white.withOpacity(.5)),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget component1(
+  //     IconData icon, String hintText, bool isPassword, bool isEmail) {
+  //   Size size = MediaQuery.of(context).size;
+  //   final _emailController = TextEditingController();
+  //   return ClipRRect(
+  //     borderRadius: BorderRadius.circular(15),
+  //     child: BackdropFilter(
+  //       filter: ImageFilter.blur(
+  //         sigmaY: 15,
+  //         sigmaX: 15,
+  //       ),
+  //       child: Container(
+  //         height: size.width / 8,
+  //         width: size.width / 1.2,
+  //         alignment: Alignment.center,
+  //         padding: EdgeInsets.only(right: size.width / 30),
+  //         decoration: BoxDecoration(
+  //           color: Colors.white.withOpacity(.05),
+  //           borderRadius: BorderRadius.circular(15),
+  //         ),
+  //         child: TextField(
+  //           controller: _emailController,
+  //           style: TextStyle(color: Colors.white.withOpacity(.8)),
+  //           cursorColor: Colors.white,
+  //           obscureText: isPassword,
+  //           keyboardType:
+  //               isEmail ? TextInputType.emailAddress : TextInputType.text,
+  //           decoration: InputDecoration(
+  //             prefixIcon: Icon(
+  //               icon,
+  //               color: Colors.white.withOpacity(.7),
+  //             ),
+  //             border: InputBorder.none,
+  //             hintMaxLines: 1,
+  //             hintText: hintText,
+  //             hintStyle:
+  //                 TextStyle(fontSize: 14, color: Colors.white.withOpacity(.5)),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget passBox(
-      IconData icon, String hintText, bool isPassword, bool isEmail) {
-    Size size = MediaQuery.of(context).size;
-    final _passwordController = TextEditingController();
+  // Widget passBox(
+  //     IconData icon, String hintText, bool isPassword, bool isEmail) {
+  //   Size size = MediaQuery.of(context).size;
+  //   final _passwordController = TextEditingController();
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(15),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaY: 15,
-          sigmaX: 15,
-        ),
-        child: Container(
-          height: size.width / 8,
-          width: size.width / 1.2,
-          alignment: Alignment.center,
-          padding: EdgeInsets.only(right: size.width / 30),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.05),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: TextField(
-            controller: _passwordController,
-            style: TextStyle(color: Colors.white.withOpacity(.8)),
-            cursorColor: Colors.white,
-            obscureText: isPassword,
-            keyboardType:
-                isEmail ? TextInputType.emailAddress : TextInputType.text,
-            decoration: InputDecoration(
-              prefixIcon: Icon(
-                icon,
-                color: Colors.white.withOpacity(.7),
-              ),
-              border: InputBorder.none,
-              hintMaxLines: 1,
-              hintText: hintText,
-              hintStyle:
-                  TextStyle(fontSize: 14, color: Colors.white.withOpacity(.5)),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  //   return ClipRRect(
+  //     borderRadius: BorderRadius.circular(15),
+  //     child: BackdropFilter(
+  //       filter: ImageFilter.blur(
+  //         sigmaY: 15,
+  //         sigmaX: 15,
+  //       ),
+  //       child: Container(
+  //         height: size.width / 8,
+  //         width: size.width / 1.2,
+  //         alignment: Alignment.center,
+  //         padding: EdgeInsets.only(right: size.width / 30),
+  //         decoration: BoxDecoration(
+  //           color: Colors.white.withOpacity(.05),
+  //           borderRadius: BorderRadius.circular(15),
+  //         ),
+  //         child: TextField(
+  //           controller: _passwordController,
+  //           style: TextStyle(color: Colors.white.withOpacity(.8)),
+  //           cursorColor: Colors.white,
+  //           obscureText: isPassword,
+  //           keyboardType:
+  //               isEmail ? TextInputType.emailAddress : TextInputType.text,
+  //           decoration: InputDecoration(
+  //             prefixIcon: Icon(
+  //               icon,
+  //               color: Colors.white.withOpacity(.7),
+  //             ),
+  //             border: InputBorder.none,
+  //             hintMaxLines: 1,
+  //             hintText: hintText,
+  //             hintStyle:
+  //                 TextStyle(fontSize: 14, color: Colors.white.withOpacity(.5)),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget component2(String string, double width, VoidCallback voidCallback) {
-    Size size = MediaQuery.of(context).size;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(15),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-        child: InkWell(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          onTap: voidCallback,
-          child: Container(
-            height: size.width / 8,
-            width: size.width / width,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.05),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Text(
-              string,
-              style: TextStyle(color: Colors.white.withOpacity(.8)),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget component2(String string, double width, VoidCallback voidCallback) {
+  //   Size size = MediaQuery.of(context).size;
+  //   return ClipRRect(
+  //     borderRadius: BorderRadius.circular(15),
+  //     child: BackdropFilter(
+  //       filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+  //       child: InkWell(
+  //         highlightColor: Colors.transparent,
+  //         splashColor: Colors.transparent,
+  //         onTap: voidCallback,
+  //         child: Container(
+  //           height: size.width / 8,
+  //           width: size.width / width,
+  //           alignment: Alignment.center,
+  //           decoration: BoxDecoration(
+  //             color: Colors.white.withOpacity(.05),
+  //             borderRadius: BorderRadius.circular(15),
+  //           ),
+  //           child: Text(
+  //             string,
+  //             style: TextStyle(color: Colors.white.withOpacity(.8)),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
 }
 
 class MyPainter extends CustomPainter {

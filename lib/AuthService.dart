@@ -44,7 +44,7 @@ class AuthService {
     userRef().doc(userModel.id).update({"lastLoginDate": Timestamp.now()});
   }
 
-// TODO: Upon saving user data, update the last login date.
+// TODO: #13 Upon saving user data, update the last login date.
   Future saveUser(UserModel userModel) async {
     await userRef().doc(userModel.id).set(userModel.toJson());
   }

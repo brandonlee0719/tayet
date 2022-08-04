@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -295,7 +297,7 @@ class _BidPageState extends State<BidPage> with SingleTickerProviderStateMixin {
                           end: Alignment.bottomCenter,
                           colors: [
                             Color.fromARGB(255, 187, 67, 23),
-                            Color.fromARGB(255, 113, 113, 3),
+                            Color.fromARGB(255, 218, 218, 8),
                           ],
                         ),
                       ),
@@ -317,8 +319,8 @@ class _BidPageState extends State<BidPage> with SingleTickerProviderStateMixin {
                           //           .titleSmall!
                           //           .copyWith(color: Colors.white)),
                           // ),
-                          if (widget.item!.start_Date!
-                              .isAfter(DateTime.now().toUtc()))
+                          if (widget.item != null &&
+                              widget.item!.start_Date!.isAfter(DateTime.now()))
                             SizedBox(
                               // height: 10,
                               child: Text(
@@ -326,12 +328,14 @@ class _BidPageState extends State<BidPage> with SingleTickerProviderStateMixin {
                                   style: GoogleFonts.changaTextTheme()
                                       .titleSmall!
                                       .copyWith(color: Colors.white)),
-                            )
-                          else
+                            ),
+                          if (DateTime.now()
+                              .toUtc()
+                              .isBefore(widget.item!.close_Date!))
                             SizedBox(
                               // height: 10,
                               child: Text(
-                                  "Closing at: ${widget.item!.close_Date!.hour.toString()}:${widget.item!.close_Date!.minute.toString()} Tz: ${widget.item!.close_Date!.timeZoneName}",
+                                  "Closing at: ${widget.item!.close_Date!.hour.toString()}:${widget.item!.close_Date!.minute.toString()} TZ: ${widget.item!.close_Date!.timeZoneName}",
                                   style: GoogleFonts.changaTextTheme()
                                       .titleSmall!
                                       .copyWith(color: Colors.white)),
@@ -341,6 +345,7 @@ class _BidPageState extends State<BidPage> with SingleTickerProviderStateMixin {
                     ),
                     Obx(() {
                       Auction? auction = bidController.currentAuction;
+
                       if (auction!.bidder == null) {
                         return Container();
                       }
@@ -456,16 +461,17 @@ class _BidPageState extends State<BidPage> with SingleTickerProviderStateMixin {
             // const MessageButton()
             if (DateTime.now()
                 .toUtc()
-                .isAfter(widget.item!.start_Date!.toUtc()))
+                .isBefore(widget.item!.close_Date!.toUtc()))
               bidButton()
             else
               IconButton(
                 icon: const Icon(Icons.construction),
-                iconSize: 40.0,
+                iconSize: 20.0,
                 color: Colors.indigo,
                 onPressed: () {
                   Get.snackbar(tr("auctionnotstarted"),
                       'إزهل شوي قاعد أشوف في وين الخلل؟',
+                      icon: const Icon(FontAwesomeIcons.poop),
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.red,
                       borderRadius: 10,
@@ -639,23 +645,32 @@ Widget buildCountdownDoy(DateTime? openTime, DateTime? closeTime) {
   var timeNow = DateTime.now().toUtc();
   // var durationDiff = DateTime.now().difference(countTime!);
   Duration? durationDiff;
-  if (openTime.difference(timeNow).inSeconds > 0) {
-    Get.log("Difference is openTime.difference(timeNow).inSeconds");
-    durationDiff = closeTime?.difference(timeNow);
+
+  if (DateTime.now().toUtc().isBefore(closeTime!.toUtc())) {
+    Get.log(
+        "Auction OPEN 🥳 Difference is ${timeNow.difference(openTime).inSeconds}");
+    durationDiff = timeNow.difference(openTime);
   } else {
-    Get.log("Difference is NOT openTime.difference(timeNow).inSeconds");
-    durationDiff = openTime.difference(timeNow);
+    Get.log("Auction Close 💩 Diff is ${timeNow.difference(closeTime)}");
+    durationDiff = timeNow.difference(closeTime);
+
   }
-  // if (durationDiff) {
-  //   return SlideCountdown(duration: const Duration(seconds: 15), onDone: () {});
-  // }
+  if (durationDiff != null) {
+    return SlideCountdown(duration: const Duration(seconds: 25), onDone: () {});
+  }
   // ANCHOR: Main countdown timer
   return SlideCountdown(
     // key: const Key("countdown")
-    onChanged: (value) => Get.log("Countdown $durationDiff.inSeconds"),
-    onDone: () => Get.log("Auction is Done", isError: true),
+    onChanged: (value) => Get.log("Countdown ${durationDiff!.inSeconds}"),
+    onDone: () {
+      Get.snackbar(tr("auctionclosed"), "Auction Closed .. تريانه بنرجع",
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 5));
+      Get.log("Auction is Done", isError: true);
+    },
+
     slideDirection:
-        (durationDiff!.inSeconds > 0) ? SlideDirection.up : SlideDirection.down,
+        (durationDiff.inSeconds > 0) ? SlideDirection.up : SlideDirection.down,
     fade: true,
     textStyle: GoogleFonts.changaTextTheme().titleSmall!.copyWith(
         color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0),

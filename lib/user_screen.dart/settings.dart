@@ -90,7 +90,7 @@ class SettingsScreen extends StatelessWidget {
             SettingsItem(
               // TODO: Retrieve the current build number to be displayed
               icon: Icons.app_settings_alt,
-              text: showBuildNumber() as String,
+              text: showBuildNumber() as String?,
             ),
             const SizedBox(height: 10),
             GestureDetector(
@@ -107,12 +107,12 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Future<String> showBuildNumber() async {
+  Future<String?> showBuildNumber() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
-    String appName = packageInfo.appName;
-    String packageName = packageInfo.packageName;
-    String version = packageInfo.version;
+    // String appName = packageInfo.appName;
+    // String packageName = packageInfo.packageName;
+    // String version = packageInfo.version;
     String buildNumber = packageInfo.buildNumber;
 
     return buildNumber;

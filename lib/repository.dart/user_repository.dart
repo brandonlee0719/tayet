@@ -18,6 +18,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:smart_auction/authentication/login_new.dart';
 
 import '../AuthService.dart';
 import '../SharedPreference/sharepref.dart';
@@ -95,8 +96,9 @@ class UserRepository extends GetxController {
 
   // ANCHOR: Changed the Firestore collection name to userProfiles
   CollectionReference userRef() =>
-    // FirebaseFirestore.instance.collection('users');
+
     FirebaseFirestore.instance.collection('userProfiles');
+
 
   String get error => _error!;
 
@@ -474,7 +476,7 @@ class UserRepository extends GetxController {
     _user(null);
 
     status(Status.Unauthenticated);
-    Get.offAll(() => LoginScreen());
+    Get.offAll(() => HomeLoginScreen());
     storageBox.erase();
     Get.log("GetX Storage Erased! \n User status: $_status");
     return Future.delayed(const Duration(seconds: 1));

@@ -60,7 +60,9 @@ class _ClosedScreenState extends State<ClosedScreen> {
               ),
               Container(
                   child: DotsIndicator(
-                dotsCount: _auctionRepository.closedAuctionList.length,
+                dotsCount: _auctionRepository.closedAuctionList.isEmpty
+                    ? 1
+                    : _auctionRepository.closedAuctionList.length,
                 position: currentIndex,
                 decorator: DotsDecorator(
                   color: Colors.black87, // Inactive color

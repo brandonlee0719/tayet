@@ -40,7 +40,6 @@ class WalletRepository extends GetxController {
 
   Future updateFundToWallet(String userId, double coinValue) async {
     FirebaseFirestore.instance.runTransaction((transaction) async {
-      // var value = await walletRef.doc(userId).get();
       var value = await walletRef.doc(userId).get();
       if (value.exists) {
         transaction.update(walletRef.doc(userId),

@@ -69,9 +69,9 @@ class LiveScreen extends StatelessWidget {
                           //         ? -MediaQuery.of(context).size.height * 0.1
                           //         : MediaQuery.of(context).size.height * 0.1,
                           //     0.0,
-                          //     0.0),
+                          //     10.0),
                           decoration: BoxDecoration(
-                              // shape: BoxShape.rectangle,
+                              shape: BoxShape.rectangle,
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
@@ -90,15 +90,15 @@ class LiveScreen extends StatelessWidget {
                           curve: const Interval(0.6, 0.8,
                               curve: Curves.easeInCirc),
                           child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Stack(
                                   children: <Widget>[
                                     Container(
                                       // width: 100.w,
                                       // height: context.height * 0.4,
-                                      height: 45.h,
+                                      height: 42.h,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         // shape: BoxShape.rectangle,
@@ -107,8 +107,10 @@ class LiveScreen extends StatelessWidget {
                                           colorFilter: const ColorFilter.mode(
                                               Colors.black45, BlendMode.darken),
                                           fit: BoxFit.fill,
-                                          image: CachedNetworkImageProvider(
-                                              item.imageUrl!.first),
+                                          image: CachedNetworkImageProvider((item
+                                                  .imageUrl!.isNotEmpty)
+                                              ? item.imageUrl!.first
+                                              : "https://tayet3aleeh.com/wp-content/uploads/2022/03/np4wfmfdgc8.jpg"),
                                         ),
                                       ),
                                     )

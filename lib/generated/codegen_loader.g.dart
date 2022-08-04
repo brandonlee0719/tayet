@@ -78,7 +78,15 @@ class CodegenLoader extends AssetLoader{
   "welcomedesc": "مستعد للتحدي؟",
   "welcomebut": "حياك",
   "name": "الإسم",
-  "coinspack": "الحزمات"
+  "coinspack": "الحزمات",
+  "Home": "البيت",
+  "Profile": "البرفايل",
+  "Settings": "تضبيطات",
+  "Coin": "الحفيز",
+  "wrongpassword": "كلمة السر غلط. تذكر وتعال",
+  "since": "منذ",
+  "bids": "طقات",
+  "auctionnotstarted": "لم يبدأ المزاد"
 };
 static const Map<String,dynamic> en_US = {
   "lastupdate": "03/04/2022",
@@ -144,7 +152,22 @@ static const Map<String,dynamic> en_US = {
   "welcomedesc": "Ready for the challenge?",
   "welcomebut": "Carry on!",
   "name": "Name",
-  "coinspack": "Coins Sacks"
+  "coinspack": "Coins Sacks",
+  "Home": "Home",
+  "Profile": "Profile",
+  "Settings": "Settings",
+  "Coin": "Shop",
+  "Auctions": "Auctions",
+  "Bids": "Bids",
+  "Logout": "Logout",
+  "Terms": "Terms",
+  "Privacy": "Privacy",
+  "Language": "Language",
+  "Notification": "Notification",
+  "wrongemail": "Wrong Email or Password",
+  "since": "Since",
+  "bids": "Bids",
+  "auctionnotstarted": "Auction not started yet"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar_AR": ar_AR, "en_US": en_US};
 }

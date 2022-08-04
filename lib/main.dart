@@ -9,8 +9,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'appbinding.dart';
 import 'helpers/config_reader.dart';
 import 'utils/colors.dart';
-
-// import 'package:wp_notify/wp_notify.dart';
+import 'package:wp_notify/wp_notify.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'onboarding/splashscreen.dart';
 import 'utils/custom_theme.dart';
@@ -23,7 +23,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  print('Handling a background message ${message.messageId}');
+  await Firebase.initializeApp();
+  if (kDebugMode) {
+    print('Handling a background message ${message.messageId}');
+  }
 }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
@@ -35,13 +38,43 @@ late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ConfigReader.init();
-  // await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
 
   await Firebase.initializeApp();
   // Set the background messaging handler early on, as a named top-level function
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+  WPNotifyAPI.instance.initWith(baseUrl: "https://tayet3aleeh.com");
+  // await  initializeDateFormatting();
+  if (!kIsWeb) {
+    channel = const AndroidNotificationChannel(
+      'high_importance_channel', // id
+      'High Importance Notifications', // title
+      description:
+          'This channel is used for important notifications.', // description
+      importance: Importance.high,
+    );
+
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    /// Create an Android Notification Channel.
+    ///
+    /// We use this channel in the `AndroidManifest.xml` file to override the
+    /// default FCM channel to enable heads up notifications.
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
+    /// Update the iOS foreground notification presentation options to allow
+    /// heads up notifications.
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+  }
   runApp(
     EasyLocalization(
         supportedLocales: const [Locale('en', 'US'), Locale('ar', 'AR')],
@@ -84,8 +117,6 @@ class MyApp extends StatelessWidget {
           }),
           appBarTheme: const AppBarTheme(
             elevation: 0.8,
-            // FIXED: brightness
-            // brightness: Brightness.light,
             iconTheme: IconThemeData(
               color: Colors.black,
             ),

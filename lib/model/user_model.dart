@@ -35,7 +35,7 @@ class UserModel {
       wpId: json['wpId'],
       imageUrl: json['imageUrl'],
       createdAt: DateTime.parse(json['createdAt']),
-      walletCoins: json['walletCoins'] ?? 10000.00);
+      walletCoins: json['walletCoins']);
 
   Map<String, dynamic> toJson() => {
         "id": id,

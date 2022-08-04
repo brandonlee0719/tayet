@@ -73,7 +73,8 @@ class BidItemRepository extends GetxController {
       String basicAuth =
           'Basic ' + base64Encode(utf8.encode('$username:$password'));
       var response = await http.get(
-          Uri.parse("https://tayet3aleeh.com/wp-json/wp/v2/t3_auction?_embed"),
+          Uri.parse(
+              "https://tayet3aleeh.com/wp-json/wp/v2/t3_auction?status=publish&_embed"),
           headers: {
             "Content-Type": "application/json",
             "Authorization": basicAuth,
@@ -112,6 +113,7 @@ class BidItemRepository extends GetxController {
         var item = Auction.fromJson(element.data());
         // item.totalBidders = item.bidder?.length;
 
+        // TODO: #16 Upon auction closed the 15 second timer starts
         value.add(item);
         if (item.isSold!) closeBid.add(item);
       }
@@ -194,7 +196,7 @@ class BidItemRepository extends GetxController {
         user.walletCoins = newBalance;
 
         walletController.updateFundToWallet(
-            userRepository.userModel.id!, -1 * newBalance);
+            userRepository.userModel.id!, newBalance);
       }
       var todaysDate = DateTime.now();
 

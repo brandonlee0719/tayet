@@ -40,7 +40,7 @@ class PaymentController extends GetxController {
 
   _setPayed() {
     state = PayState.payed;
-    //TODO show snack bar or something
+    //TODO #14 show snack bar or something
     update();
   }
 
